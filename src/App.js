@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CommonHeader, CommonFooter } from "./Header";
+import { CommonHeader, CommonFooter } from "./Common";
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router,
