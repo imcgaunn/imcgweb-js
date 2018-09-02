@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router,
+  Route, 
+  Link } from 'react-router-dom';
+import { HomePage } from './App';
 
 class CommonHeader extends Component {
   render() {
@@ -13,22 +17,7 @@ class CommonHeader extends Component {
 class CommonFooter extends Component {
   render() {
     return (
-      <footer id="navigation">
-        <li>
-          <a href="ll" />
-        </li>
-        <li>
-          <a href="ll" />
-        </li>
-        <li>
-          <a href="ll" />
-        </li>
-        <li>
-          <a href="ll" />
-        </li>
-        <li>
-          <a href="ll" />
-        </li>
+      <footer>
       </footer>
     );
   }
