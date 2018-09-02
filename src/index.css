@@ -9,7 +9,7 @@ body {
   overflow: 'scroll';
   margin-left: 4rem;
   margin-right: 4rem;
-  padding: 2rem 4rem 2rem 4rem;
+  padding: 0.5rem 4rem 2rem 4rem;
   background: rgba(151, 173, 187, 0.685);
   border-radius: 0.8rem;
 }
@@ -23,19 +23,21 @@ header {
 }
 
 #navigation {
-  margin-top: 2rem;
   margin-bottom: 1rem;
-  text-align: center;
   width: 100%;
 }
 
-#navigation li {
+#navigation > ul {
+  text-align: center;
+}
+
+#navigation > ul > li {
   display: inline-block;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
 }
 
-#navigation li::after {
+#navigation > ul > li::after {
   content: " ◔"
 }
 
