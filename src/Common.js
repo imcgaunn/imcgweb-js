@@ -5,7 +5,7 @@ import { HomePage } from "./App";
 const CommonHeader = props => {
   return (
     <header class="mainHeader">
-      <h2>{this.props.title}</h2>
+      <h2>{props.title}</h2>
     </header>
   );
 };
