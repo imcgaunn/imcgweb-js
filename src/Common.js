@@ -16,8 +16,12 @@ class CommonHeader extends Component {
 
 class CommonFooter extends Component {
   render() {
+    const footerStyles = {
+      textAlign: 'center'
+    };
     return (
-      <footer>
+      <footer style={footerStyles}>
+        ;0
       </footer>
     );
   }
