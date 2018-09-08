@@ -1,19 +1,39 @@
 import { fetchProjects } from "./Projects";
 import { fromJS, Map } from "immutable";
+import {
+  createFetchSuccessAction,
+  createFetchFailureAction,
+  createFetchStartAction
+} from "./actions";
+import { projectsReducer } from "./reducers";
+import { isRegExp } from "util";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
-it("can return a json list of projects", () => {
-  fetchProjects("imcgaunn")
-    .then(data => {
-      const immutableData = fromJS(data);
-      immutableData.map(proj => {
-        const interestingData = Map({
-          url: proj.get('html_url'),
-          pushed_at: proj.get('pushed_at')
+it("can update state with result of async request", () => {
+  const testStore = createStore(
+    projectsReducer,
+    applyMiddleware(thunk)
+  );
+
+  const doFetchProjects = username => {
+    return (dispatch, getState) => {
+      createFetchStartAction();
+      fetchProjects(username)
+        .then(data => {
+          const immutableData = fromJS(data);
+          const interestingData = immutableData.map(proj => {
+            return Map({
+              url: proj.get("html_url"),
+              pushed_at: proj.get("pushed_at")
+            });
+          });
+          dispatch(createFetchSuccessAction(interestingData));
+        })
+        .catch(err => {
+          dispatch(createFetchFailureAction(err));
         });
-        console.log(interestingData);
-      });
-    })
-    .catch(err => {
-      console.error(err);
-    });
+    }
+  };
+  testStore.dispatch(doFetchProjects("imcgaunn"));
 });
