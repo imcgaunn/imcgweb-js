@@ -1,10 +1,8 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { HomePage } from "./App";
+import React from "react";
 
 const CommonHeader = props => {
   return (
-    <header class="mainHeader">
+    <header className="mainHeader">
       <h2>{props.title}</h2>
     </header>
   );

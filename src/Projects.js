@@ -1,6 +1,7 @@
 import React from "react";
-import https from "https";
+import {connect} from "react-redux";
 import fetch from "isomorphic-fetch";
+import {doFetchProjectsAsync} from "./actions";
 
 const githubHostName = "api.github.com";
 const myUserName = "imcgaunn";
@@ -16,8 +17,28 @@ const ProjectsPage = props => {
   return (
     <div>
       <p> this is a great paragraph boiiiii </p>
+      <button className={'testProjectsButton'} onClick={props.fetchMyProjects}>FETCH ME DADDY</button>
     </div>
   );
 };
 
-export { fetchProjects, ProjectsPage };
+const mapStateToProps = state => {
+  return {
+    projects: state.projects
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchMyProjects: () => {
+      dispatch(doFetchProjectsAsync(myUserName))
+    }
+  }
+};
+
+const ConnectedProjectsPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectsPage);
+
+export { fetchProjects, ConnectedProjectsPage };

@@ -1,4 +1,6 @@
-import {Map} from "immutable/dist/immutable";
+import {Map} from "immutable";
+import {fetchProjects} from "./Projects";
+import {fromJS} from "immutable/dist/immutable";
 
 export const START_FETCH_PROJECTS = 'START_FETCH_PROJECTS';
 export const FAILED_FETCH_PROJECTS = 'FAILED_FETCH_PROJECTS';
@@ -23,4 +25,24 @@ export const createFetchFailureAction = err => {
     type: FAILED_FETCH_PROJECTS,
     payload: Map({ error: err })
   };
+};
+
+export const doFetchProjectsAsync = username => {
+  return (dispatch, getState) => {
+    createFetchStartAction();
+    fetchProjects(username)
+      .then(data => {
+        const immutableData = fromJS(data);
+        const interestingData = immutableData.map(proj => {
+          return Map({
+            url: proj.get("html_url"),
+            pushed_at: proj.get("pushed_at")
+          });
+        });
+        dispatch(createFetchSuccessAction(interestingData));
+      })
+      .catch(err => {
+        dispatch(createFetchFailureAction(err));
+      });
+  }
 };

@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { CommonHeader, CommonFooter } from "./Common";
-import { ProjectsPage } from "./Projects";
-import { List } from "immutable";
+import { ConnectedProjectsPage } from "./Projects";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { createStore } from "redux";
 import { Provider, connect } from "react-redux";
 
 const App = props => {
@@ -26,7 +24,7 @@ const App = props => {
               </li>
             </ul>
             <hr />
-            <Route path="/projects" component={ProjectsPage} />
+            <Route path="/projects" component={ConnectedProjectsPage} />
             <Route exact path="/" component={HomePage} />
           </div>
         </Router>
@@ -89,12 +87,14 @@ const MyPhilosophy = props => {
 
 const mapStateToProps = state => {
   return {
-    projects: List()
+    projects: state.projects
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+
+  };
 };
 
 export default connect(

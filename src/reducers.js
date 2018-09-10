@@ -1,20 +1,21 @@
-import { START_FETCH_PROEJCTS, FAILED_FETCH_PROJECTS, SUCCESS_FETCH_PROJECTS } from './actions';
-import { fetchProjects } from './Projects'
-import { Map } from 'immutable';
+import { START_FETCH_PROJECTS, FAILED_FETCH_PROJECTS, SUCCESS_FETCH_PROJECTS } from './actions';
+import { List } from 'immutable';
 
-const INITIAL_STATE = Map();
+const INITIAL_STATE = List();
 
 export const projectsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case START_FETCH_PROEJCTS:  break
+        case START_FETCH_PROJECTS:
+          break;
         case FAILED_FETCH_PROJECTS:
             console.log(action.payload);
             // will this fall through? what are the switch semantics?
             // A: yup :)
-        case SUCCESS_FETCH_PROJECTS:
-            console.log(action.payload);
+      case SUCCESS_FETCH_PROJECTS:
+            console.log(action.payload.toJS());
+            return action.payload;
         default:
             return state;
     }
     return state;
-}
+};
