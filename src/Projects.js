@@ -18,6 +18,17 @@ const ProjectsPage = props => {
     <div>
       <p> this is a great paragraph boiiiii </p>
       <button className={'testProjectsButton'} onClick={props.fetchMyProjects}>FETCH ME DADDY</button>
+      <ul>
+        {props.projects.take(10).map((proj, index) => {
+          console.log(proj.get('url'));
+          return (
+          <li key={index}>
+            <a href={proj.get('url')}>{proj.get('url')}</a>
+            <p>last updated at: {proj.get('pushed_at')}</p>
+          </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

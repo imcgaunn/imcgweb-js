@@ -8,11 +8,9 @@ export const projectsReducer = (state = INITIAL_STATE, action) => {
         case START_FETCH_PROJECTS:
           break;
         case FAILED_FETCH_PROJECTS:
-            console.log(action.payload);
             // will this fall through? what are the switch semantics?
             // A: yup :)
       case SUCCESS_FETCH_PROJECTS:
-            console.log(action.payload.toJS());
             return action.payload;
         default:
             return state;
