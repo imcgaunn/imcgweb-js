@@ -1,6 +1,6 @@
 import {
   doFetchProjectsAsync
-} from "./actions";
+} from "../actions/projects";
 import { projectsReducer } from "./reducers";
 import { isRegExp } from "util";
 import { createStore, applyMiddleware } from "redux";

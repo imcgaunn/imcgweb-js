@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import fetch from "isomorphic-fetch";
-import {doFetchProjectsAsync} from "./actions";
+import {doFetchProjectsAsync} from "../actions/projects";
 
 const githubHostName = "api.github.com";
 const myUserName = "imcgaunn";

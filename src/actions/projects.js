@@ -1,5 +1,5 @@
 import {Map} from "immutable";
-import {fetchProjects} from "./Projects";
+import {fetchProjects} from "../components/Projects";
 import {fromJS} from "immutable/dist/immutable";
 
 export const START_FETCH_PROJECTS = 'START_FETCH_PROJECTS';
